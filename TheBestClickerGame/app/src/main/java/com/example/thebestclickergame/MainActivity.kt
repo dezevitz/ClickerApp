@@ -2,7 +2,10 @@ package com.example.thebestclickergame
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.thebestclickergame.databinding.ActivityMainBinding
+
+//TODO changes that only need to happen once (ex level 2) can occur only once somewhere else
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -41,13 +44,19 @@ class MainActivity : AppCompatActivity() {
             val editor = sharedPreferences.edit()
             editor.putString("NUMCLICKS", "0")
             editor.apply()
+            binding.root.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.white))
+            binding.clickCount.setTextColor(ContextCompat.getColor(this@MainActivity, R.color.black))
         }
     }
 
     fun selectLevel() : String{
         when(binding.clickCount.text.toString().toInt()){
             in 1..15 -> return "1"
-            in 16..40 -> return "2"
+            in 16..40 -> {
+                binding.root.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.black))
+                binding.clickCount.setTextColor(ContextCompat.getColor(this@MainActivity, R.color.white))
+                return "2"
+            }
             in 41..89 -> return "3"
         }
         return "9999999"
