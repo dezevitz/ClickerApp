@@ -17,16 +17,19 @@ class MainActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("SP_INFO", MODE_PRIVATE)
         var numClicks = sharedPreferences.getString("NUMCLICKS", "0") //set clicker number when app starts
         binding.clickCount.text = numClicks
-        val level = sharedPreferences.getString("LEVEL", "1") //set level on Create
+        var level = sharedPreferences.getString("LEVEL", "1") //set level on Create
         binding.levelNum.text = "Level: " + level.toString()
 
         binding.clickHere.setOnClickListener {
             binding.clickCount.text = (binding.clickCount.text.toString().toInt() + 1).toString()
             val editor = sharedPreferences.edit()
             editor.putString("NUMCLICKS", binding.clickCount.text.toString())
-            editor.apply()
 
-            selectLevel()
+            level = selectLevel()
+            binding.levelNum.text = "Level: " + level
+            editor.putString("LEVEL", level)
+
+            editor.apply()
         }
         //End Base Click Functionality
 
@@ -41,9 +44,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun selectLevel() {
-        //when(binding.clickCount.text.toString().toInt()){
-         //   in 1..10 ->
-        //}
+    fun selectLevel() : String{
+        when(binding.clickCount.text.toString().toInt()){
+            in 1..15 -> return "1"
+        }
+        return "2"
     }
 }
