@@ -47,7 +47,9 @@ class MainActivity : AppCompatActivity() {
     fun selectLevel() : String{
         when(binding.clickCount.text.toString().toInt()){
             in 1..15 -> return "1"
+            in 16..40 -> return "2"
+            in 41..89 -> return "3"
         }
-        return "2"
+        return "9999999"
     }
 }
