@@ -51,13 +51,28 @@ class MainActivity : AppCompatActivity() {
 
     fun selectLevel() : String{
         when(binding.clickCount.text.toString().toInt()){
-            in 1..15 -> return "1"
-            in 16..40 -> {
+            in 1..10 -> return "1"
+            in 11..20 -> {
                 binding.root.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.black))
                 binding.clickCount.setTextColor(ContextCompat.getColor(this@MainActivity, R.color.white))
                 return "2"
             }
-            in 41..89 -> return "3"
+            in 21..60 -> {
+                binding.clickCount.setTextColor(ContextCompat.getColor(this@MainActivity, R.color.black))
+                when(binding.clickCount.text.toString().toInt()%10){
+                    1 -> binding.root.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.pink))
+                    2 -> binding.root.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.red))
+                    3 -> binding.root.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.orange))
+                    4 -> binding.root.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.yellow))
+                    5 -> binding.root.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.lime))
+                    6 -> binding.root.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.green))
+                    7 -> binding.root.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.bluegreen))
+                    8 -> binding.root.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.blue))
+                    9 -> binding.root.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.indigo))
+                    0 -> binding.root.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.violet))
+                }
+                return "3"
+            }
         }
         return "9999999"
     }
